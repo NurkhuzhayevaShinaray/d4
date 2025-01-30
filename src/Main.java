@@ -6,7 +6,7 @@ import repositories.UserRepository;
 import repositories.ReviewRepository;
 import repositories.interfaces.IUserRepository;
 
-import application.MyApplication; // Импортируем MyApplication
+import application.MyApplication;
 
 public class Main {
     public static void main(String[] args) {
