@@ -1,18 +1,32 @@
 import controllers.UserController;
+import controllers.BookController;
 import controllers.IUserController;
+import controllers.interfaces.IBookController;
+import repositories.UserRepository;
+import repositories.BookRepository;
+import repositories.interfaces.IUserRepository;
+import repositories.interfaces.IBookRepository;
 import data.PostgresDB;
 import data.interfaces.IDB;
-import repositories.UserRepository;
-import repositories.interfaces.IUserRepository;
 
 public class Main {
     public static void main(String[] args) {
-        IDB db = new PostgresDB("jdbc:postgresql://localhost:5432/", "postgres", "Shin127ay");
-        IUserRepository repo = new UserRepository(db);
-        IUserController controller = new UserController(repo);
-        MyApplication app = new MyApplication(controller);
-        app.start();
+        String url = "jdbc:postgresql://localhost:5432/bookstore";
+        String user = "postgres";
+        String password = "Shin127ay";
+        IDB db = new PostgresDB(url, user, password);
 
-        db.close();
+        IUserRepository userRepo = new UserRepository(db);
+        IBookRepository bookRepo = new BookRepository(db);
+
+        IUserController userController = new UserController(userRepo);
+        IBookController bookController = new BookController(bookRepo);
+
+        MyApplication userApp = new MyApplication(userController);
+        BookApplication bookApp = new BookApplication(bookController);
+
+        userApp.start();
+        bookApp.start();
     }
 }
+

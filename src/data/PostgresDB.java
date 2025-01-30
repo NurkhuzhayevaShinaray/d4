@@ -17,6 +17,10 @@ public class PostgresDB implements IDB {
         setPassword(password);
     }
 
+    public PostgresDB() {
+
+    }
+
     public String getUrl() {
         return url;
     }
