@@ -1,6 +1,6 @@
 package controllers;
 
-import controllers.interfaces.IUserController;
+import controllers.IUserController;
 import models.User;
 import repositories.interfaces.IUserRepository;
 
@@ -12,12 +12,12 @@ public class UserController implements IUserController {
     public UserController(IUserRepository repo) {
         this.repo = repo;
     }
+
     @Override
-    public String createUser(String name, String surname, String gender) {
-        boolean male = gender.equalsIgnoreCase("male");
-        User user = new User(name, surname, male);
+    public String createUser(String name, String email, String password) {
+        User user = new User(name, email, password);
         boolean created = repo.createUser(user);
-        return (created) ? "User was created" : "User creation was failed";
+        return (created) ? "User was created" : "User creation failed";
     }
 
     @Override
@@ -29,10 +29,10 @@ public class UserController implements IUserController {
     @Override
     public String getAllUsers() {
         List<User> users = repo.getAllUsers();
-        StringBuilder responce = new StringBuilder();
+        StringBuilder response = new StringBuilder();
         for (User user : users) {
-            responce.append(user.toString()).append("\n");
+            response.append(user.toString()).append("\n");
         }
-        return responce.toString();
+        return response.toString();
     }
 }

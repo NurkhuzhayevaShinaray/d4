@@ -20,12 +20,12 @@ public class UserRepository implements IUserRepository {
         Connection connection = null;
         try {
             connection = db.getConnection();
-            String sql ="INSERT INTO users(name, surname, gender) VALUES (?, ?, ?)";
+            String sql ="INSERT INTO users (name, email, password) VALUES (?, ?, ?)";
             PreparedStatement st = connection.prepareStatement(sql);
 
             st.setString(1, user.getName());
-            st.setString(2, user.getSurname());
-            st.setBoolean(3, user.getGender());
+            st.setString(2, user.getEmail());
+            st.setString(3, user.getPassword());
 
             st.execute();
 
@@ -49,8 +49,8 @@ public class UserRepository implements IUserRepository {
             if (rs.next()){
                 return new User(rs.getInt("id"),
                         rs.getString("name"),
-                        rs.getString("surname"),
-                        rs.getBoolean("gender"));
+                        rs.getString("email"),
+                        rs.getString("password"));
             }
         }catch (SQLException e){
             System.out.println("sql error:" + e.getMessage());
@@ -63,7 +63,7 @@ public class UserRepository implements IUserRepository {
         Connection connection = null;
         try{
             connection = db.getConnection();
-            String sql ="SELECT id, name, surname, gender FROM users";
+            String sql ="SELECT id, name, email, password FROM users";
             Statement st = connection.createStatement();
 
             ResultSet rs = st.executeQuery(sql);
@@ -71,8 +71,8 @@ public class UserRepository implements IUserRepository {
             while(rs.next()){
                 User user = new User(rs.getInt("id"),
                         rs.getString("name"),
-                        rs.getString("surname"),
-                        rs.getBoolean("gender"));
+                        rs.getString("email"),
+                        rs.getString("password"));
                 users.add(user);
             }
             return users;

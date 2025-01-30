@@ -1,4 +1,4 @@
-import controllers.interfaces.IUserController;
+import controllers.IUserController;
 import repositories.interfaces.IUserRepository;
 
 import java.util.InputMismatchException;
@@ -29,6 +29,7 @@ public class MyApplication {
             mainMenu();
             try{
                 int option = scanner.nextInt();
+                scanner.nextLine();
                 switch(option){
                     case 1: getAllUsersMenu(); break;
                     case 2: getUserByIdMenu(); break;
@@ -47,13 +48,13 @@ public class MyApplication {
 
     private void createUserMenu() {
         System.out.println("Please enter name: ");
-        String name = scanner.next();
-        System.out.println("Please enter surname: ");
-        String surname = scanner.next();
-        System.out.println("Please enter gender (male/female): ");
-        String gender = scanner.next();
+        String name = scanner.nextLine();
+        System.out.println("Please enter email: ");
+        String email = scanner.nextLine();
+        System.out.println("Please enter password: ");
+        String password = scanner.nextLine();
 
-        String response = controller.createUser(name, surname, gender);
+        String response = controller.createUser(name, email, password);
         System.out.println(response);
     }
 

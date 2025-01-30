@@ -6,34 +6,31 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class PostgresDB implements IDB {
-    private String host;
-    private String username;
+    private String url;
+    private String user;
     private String password;
-    private String dbName;
-
     private Connection connection;
 
-    public PostgresDB(String host, String username, String password, String dbName) {
-        setHost(host);
-        setUsername(username);
+    public PostgresDB(String url, String user, String password) {
+        setUrl(url);
+        setUser(user);
         setPassword(password);
-        setDbName(dbName);
     }
 
-    public String getHost() {
-        return host;
+    public String getUrl() {
+        return url;
     }
 
-    public void setHost(String host) {
-        this.host = host;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUser() {
+        return user;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUser(String user) {
+        this.user = user;
     }
 
     public String getPassword() {
@@ -44,41 +41,30 @@ public class PostgresDB implements IDB {
         this.password = password;
     }
 
-    public String getDbName() {
-        return dbName;
-    }
-
-    public void setDbName(String dbName) {
-        this.dbName = dbName;
-    }
-
     @Override
     public Connection getConnection() {
-        String connectionUrl = "jdbc:postgresql://" + host + "/" + dbName;
         try {
-            Class.forName("org.postgresql.Driver");
-
             if (connection != null && !connection.isClosed()) {
                 return connection;
             }
-
-            connection = DriverManager.getConnection(connectionUrl, username, password);
+            connection = DriverManager.getConnection(url, user, password);
+            System.out.println("Connected to the database.");
             return connection;
-        } catch (Exception e) {
-            System.out.println("Failed to connect to database: " + e.getMessage());
+        } catch (SQLException e) {
+            System.out.println("Database connection error: " + e.getMessage());
         }
         return null;
     }
 
     @Override
     public void close() {
-        if (connection != null) {
-            try {
+        try {
+            if (connection != null && !connection.isClosed()) {
                 connection.close();
-                System.out.println("Connection closed successfully.");
-            } catch (SQLException e) {
-                System.out.println("Failed to close connection: " + e.getMessage());
+                System.out.println("Database connection closed.");
             }
+        } catch (SQLException e) {
+            System.out.println("Error closing database connection: " + e.getMessage());
         }
     }
 }
