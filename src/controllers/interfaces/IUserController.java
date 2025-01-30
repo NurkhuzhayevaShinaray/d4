@@ -1,4 +1,4 @@
-package controllers;
+package controllers.interfaces;
 
 public interface IUserController {
     String createUser(String name, String surname, String gender);

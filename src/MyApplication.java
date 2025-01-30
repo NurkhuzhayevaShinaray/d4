@@ -1,5 +1,4 @@
-import controllers.IUserController;
-import repositories.interfaces.IUserRepository;
+import controllers.interfaces.IUserController;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -38,7 +37,7 @@ public class MyApplication {
                 }
             }catch (InputMismatchException e){
                 System.out.println("Please enter a valid option!" + e);
-                scanner.nextLine(); //to ignore incorrect input
+                scanner.nextLine();
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }

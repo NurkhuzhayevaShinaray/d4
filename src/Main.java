@@ -1,6 +1,6 @@
 import controllers.UserController;
 import controllers.BookController;
-import controllers.IUserController;
+import controllers.interfaces.IUserController;
 import controllers.interfaces.IBookController;
 import repositories.UserRepository;
 import repositories.BookRepository;
