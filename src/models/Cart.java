@@ -6,12 +6,12 @@ import java.util.List;
 public class Cart {
     private List<Book> cartBooks;
     private List<Integer> cartQuantities;
-    private List<Double> cartSum;  // Список для хранения сумм каждой книги
+    private List<Double> cartSum;
 
     public Cart() {
         this.cartBooks = new ArrayList<>();
         this.cartQuantities = new ArrayList<>();
-        this.cartSum = new ArrayList<>();  // Инициализация списка для сумм
+        this.cartSum = new ArrayList<>();
     }
 
     public List<Book> getCartBooks() {

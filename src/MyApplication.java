@@ -1,5 +1,3 @@
-package application;
-
 import controllers.interfaces.IUserController;
 import controllers.ReviewController;
 

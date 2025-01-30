@@ -30,7 +30,7 @@ public class CartApplication {
             System.out.println("6. Exit");
 
             int choice = scanner.nextInt();
-            scanner.nextLine();  // consume newline
+            scanner.nextLine();
 
             switch (choice) {
                 case 1:
@@ -58,7 +58,6 @@ public class CartApplication {
     }
 
     private void addBookToCart() {
-        // Запрашиваем ID книги у пользователя
         System.out.println("Enter book ID to add to cart:");
         int bookId = scanner.nextInt();
         scanner.nextLine();
@@ -66,11 +65,9 @@ public class CartApplication {
         int userId = bookId;
 
 
-        // Получаем книгу по введенному ID
         Book book = getBookById(bookId);
 
         if (book != null) {
-            // Передаем выбранную книгу в корзину
             cartController.addBookToCart(book, userId);
             System.out.println("Book added to cart!");
         } else {
