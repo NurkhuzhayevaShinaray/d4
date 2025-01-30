@@ -1,6 +1,6 @@
 package controllers;
 
-import controllers.IUserController;
+import controllers.interfaces.IUserController;
 import models.User;
 import repositories.interfaces.IUserRepository;
 

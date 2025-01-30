@@ -1,8 +1,7 @@
 package application;
 
-import controllers.IUserController;
+import controllers.interfaces.IUserController;
 import controllers.ReviewController;
-import repositories.interfaces.IUserRepository;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
