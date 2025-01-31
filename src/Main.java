@@ -1,7 +1,6 @@
 import controllers.BookController;
 import controllers.CartController;
 import controllers.UserController;
-import controllers.ReviewController;
 import controllers.interfaces.IBookController;
 import controllers.interfaces.ICartController;
 import data.PostgresDB;
@@ -9,7 +8,6 @@ import data.interfaces.IDB;
 import repositories.BookRepository;
 import repositories.CartRepository;
 import repositories.UserRepository;
-import repositories.ReviewRepository;
 import repositories.interfaces.IBookRepository;
 import repositories.interfaces.ICartRepository;
 import repositories.interfaces.IUserRepository;
@@ -27,19 +25,12 @@ public class Main {
         IBookRepository bookRepo = new BookRepository(db);
         IBookController bookController = new BookController(bookRepo);
 
-
         ICartRepository cartRepo = new CartRepository(db);
         ICartController cartController = new CartController(cartRepo);
 
-
-
-        ReviewRepository reviewRepo = new ReviewRepository(db);
-        ReviewController reviewController = new ReviewController(reviewRepo);
-
-        MyApplication app = new MyApplication(userController, reviewController);
+        MyApplication app = new MyApplication(userController);
         BookApplication bookApp = new BookApplication(bookController);
         CartApplication cartApplication = new CartApplication(cartController);
-
 
         app.start();
 
