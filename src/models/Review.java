@@ -5,7 +5,7 @@ public class Review {
     private int userId;
     private String comment;
     private int rating;
-    private String status; // Новый статус отзыва (например, "Pending", "Approved")
+    private String status; 
 
     public Review() {
     }
@@ -14,11 +14,11 @@ public class Review {
         this.userId = userId;
         this.comment = comment;
         this.rating = rating;
-        this.status = "Pending"; // По умолчанию статус "Pending"
+        this.status = "Pending"; 
     }
 
     public Review(int id, int userId, String comment, int rating, String status) {
-        this(userId, comment, rating);  // Вызываем второй конструктор
+        this(userId, comment, rating);
         this.id = id;
         this.status = status;
     }
